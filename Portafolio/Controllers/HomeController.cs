@@ -15,13 +15,38 @@ namespace Portafolio.Controllers
 
         public IActionResult Index()
         {
-            var persona = new Persona()
+           
+
+            var proyectos = ObtenerProyectos().Take(3);
+            var modelo = new HomeIndex() { Proyectos = proyectos };
+
+            return View(modelo);
+        }
+
+        private List<Proyecto> ObtenerProyectos()
+        {
+            return new List<Proyecto>() { new Proyecto
             {
-                Nombre = "Federico Acevedo",
-                Edad = 27
+                Titulo = "Subra IT",
+                Descripcion = "Analista de Aplicaciones",
+                Link =  "https://www.subra-it.com/",
+                ImagenURL = "/img/logo.png"
+            },
+             new Proyecto
+            {
+                Titulo = "Napse Global",
+                Descripcion = "Soporte de Aplicaciones | Desarrollador",
+                Link =  "https://napse.global/",
+                ImagenURL = "/img/napse-big.png"
+            },
+              new Proyecto
+            {
+                Titulo = "KaiZen2B",
+                Descripcion = "Analista Programador",
+                Link =  "http://www.kaizen2b.com/",
+                ImagenURL = "/img/KaiZen2B-NuevoLogo.png"
+            }
             };
-            
-            return View(persona);
         }
 
         public IActionResult Privacy()
